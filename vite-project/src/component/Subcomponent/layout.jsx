@@ -52,7 +52,9 @@ const Layout = ({children }) => {
                 <p className="text-gray-500">View and analyze your social media performance</p>
               </div>
               <div className="flex items-center gap-4">
-                <button className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100">
+                <button className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100"
+                onClick = {() => window.location.reload()}
+                >
                   <RefreshCcw size={20} />
                   <span>Refresh</span>
                 </button>
