@@ -1,30 +1,34 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
-import "./App.css";
 import Outputjson from "../Outputjson";
 import { parse } from "postcss";
 import ApikeyPrompt from "./component/ApikeyPrompt";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import HomePage from "./component/HomePage";
 import {ChaiGlass} from "./component/chaiCup.jsx";
-import AnalyticsDashboard from "./component/anaylatics";
-
-const LangFlow = () => {};
+import PromptChat from "./component/Subcomponent/Prompt";
+import { ApiKeyProvider } from "../hook/APIContext";
 
 function App() {
-  //       console.log(Outputjson)
-  // const data = JSON.stringify(Outputjson)
+  const [currentPrompt, setCurrentPrompt] = useState('');
+
+  const handleSendPrompt = (prompt) => {
+    setCurrentPrompt(prompt); // Update the current prompt
+  };
 
   return (
     <>
+      <ApiKeyProvider>
       <Router>
         <Routes>
         <Route exact path="/" element={<ApikeyPrompt />} />
-        <Route path="/HomePage/*" element={<HomePage />} /> {/* Add trailing /* */}
+        <Route path="/prompt" element={<PromptChat onSend={handleSendPrompt} />} />
+        <Route path="/HomePage/*" element={<HomePage prompt={currentPrompt} />} /> {/* Add trailing /* */}
         <Route path="/ChaiCup" element={<ChaiGlass />} />
         </Routes>
       </Router>
+      </ApiKeyProvider>,
+
     </>
   );
 }

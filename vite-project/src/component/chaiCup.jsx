@@ -157,15 +157,33 @@ export const ChaiGlass = () => {
     setValues(newValues);
     updateGlass(newValues);
   };
+  
+  
+    const data = [
+      {
+          "name": "Likes",
+          "value": 260
+      },
+      {
+          "name": "Comments",
+          "value": 60
+      },
+      {
+          "name": "Shares",
+          "value": 40
+      }
+  ]
+  
 
   return (
     <div style={styles.container}>
       <div style={styles.inputs}>
-        {[0, 1, 2].map((index) => (
+        {data.map((item ,index) => (
           <input
             key={index}
             type="number"
-            placeholder={`Value ${index + 1}`}
+            value={item.value}
+            placeholder={item.name}
             style={styles.input}
             onChange={(e) => handleInputChange(index, e.target.value)}
           />

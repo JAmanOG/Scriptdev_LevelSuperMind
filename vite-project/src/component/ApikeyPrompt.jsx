@@ -5,16 +5,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Sparkles, Bot, ArrowRight, Check, Copy, Loader2 } from "lucide-react";
+import { useApi } from "@/hook/APIContext";
 
 const ApikeyPrompt = () => {
-  const [apiKey, setApiKey] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [copied, setCopied] = useState(false);
   const navigate = useNavigate();
-
-
-
+  const { apiKey, setApiKey } = useApi();
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -24,10 +23,11 @@ const ApikeyPrompt = () => {
       if (apiKey.length < 20) {
         setError('Invalid API key format. Please check your key and try again.');
         setIsLoading(false);
-    navigate('/HomePage');
-
+        alert("Invalid API key format. Please check your key and try again.");
         return;
       }
+      setApiKey(apiKey); 
+      navigate('/prompt');
       setIsLoading(false);
     }, 1000);
   };
@@ -70,8 +70,8 @@ const ApikeyPrompt = () => {
                 <Input
                   type="text"
                   placeholder="sk-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-                  value={apiKey}
-                  onChange={(e) => setApiKey(e.target.value)}
+                  value={apiKey} // Set value to apiKey from context
+                  onChange={(e) => setApiKey(e.target.value)} // Update apiKey in context
                   className="w-full font-mono bg-black/50 border-gray-800 text-gray-300 h-14 px-4"
                 />
                 {apiKey && (
@@ -97,7 +97,6 @@ const ApikeyPrompt = () => {
               type="submit" 
               className="w-full h-14 bg-gradient-to-r from-green-500 to-blue-500 hover:from-green-600 hover:to-blue-600 text-white font-medium rounded-xl relative group overflow-hidden"
               disabled={isLoading}
-
             >
               {isLoading ? (
                 <div className="flex items-center gap-2">
