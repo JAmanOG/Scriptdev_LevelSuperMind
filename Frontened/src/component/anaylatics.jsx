@@ -625,8 +625,8 @@ const AnalyticsDashboard = () => {
   console.log("Result:", result);
   console.log("Engagement Data:", engagementData);
   const colors = ['emerald', 'blue', 'purple', 'amber', 'rose'];
-  const COLORS = ['#10B981', '#6366F1', '#F59E0B'];
-
+  const COLORS = ['#F7D3B2', '#2C2C2C', '#6A8A82'];
+  
   if (!apiKey) {
     return (
       <div className="flex h-screen w-full items-center justify-center bg-gradient-to-r from-blue-50 to-indigo-50 p-4">

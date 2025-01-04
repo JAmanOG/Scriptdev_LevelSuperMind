@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 
 export const ChaiGlass = () => {
   const styles = {
@@ -17,7 +17,7 @@ export const ChaiGlass = () => {
     },
     input: {
       padding: '8px',
-      width: '80px',
+      width: '200px',
       border: '1px solid #ccc',
       borderRadius: '4px',
     },
@@ -117,10 +117,59 @@ export const ChaiGlass = () => {
       filter: 'blur(3px)',
     },
   };
+  const dataState = useMemo(() => {
+    const savedData = localStorage.getItem("dataState");
+    return savedData ? JSON.parse(savedData) : null;
+  }, []);
+  const message_text = dataState?.outputs?.[0]?.outputs?.[0]?.results?.message?.text || "";
 
-  // Add bubble keyframes
+  function parseEngagementData(message_text) {
+    const result = {};
+    const staticMatch = message_text.match(
+      /### Static Image Posts:\n- \*\*Average Likes:\*\* (\d+)\n- \*\*Average Comments:\*\* (\d+)\n- \*\*Average Shares:\*\* (\d+)/
+    );
+    if (staticMatch) {
+      result.staticImage = {
+        "Average Likes": parseInt(staticMatch[1], 10),
+        "Average Comments": parseInt(staticMatch[2], 10),
+        "Average Shares": parseInt(staticMatch[3], 10),
+      };
+    }
+    return result;
+  }
+
+  const engagementData = parseEngagementData(message_text);
+
+  const formattedData = [
+    { name: "Likes", value: engagementData.staticImage?.["Average Likes"] || 0 },
+    { name: "Comments", value: engagementData.staticImage?.["Average Comments"] || 0 },
+    { name: "Shares", value: engagementData.staticImage?.["Average Shares"] || 0 },
+  ];
+
+  const [data, setData] = useState(formattedData);
+  const [maxTotal, setMaxTotal] = useState(0);
+  const [liquidHeight, setLiquidHeight] = useState(0);
+  const [average, setAverage] = useState(0);
+
   useEffect(() => {
-    const style = document.createElement('style');
+    if (maxTotal > 0) {
+      const total = data.reduce((sum, item) => sum + item.value, 0);
+      const normalizedAverage = (total / maxTotal) * 100;
+      setAverage(normalizedAverage);
+      setLiquidHeight(Math.min(normalizedAverage, 100));
+    } else {
+      setLiquidHeight(0);
+      setAverage(0);
+    }
+  }, [data, maxTotal]);
+
+  const handleMaxTotalChange = (e) => {
+    const value = parseFloat(e.target.value);
+    setMaxTotal(value);
+  };
+
+  useEffect(() => {
+    const style = document.createElement("style");
     style.textContent = `
       @keyframes bubble {
         0% {
@@ -140,56 +189,16 @@ export const ChaiGlass = () => {
     return () => document.head.removeChild(style);
   }, []);
 
-  const [values, setValues] = useState([0, 0, 0]);
-  const [liquidHeight, setLiquidHeight] = useState(0);
-  const [average, setAverage] = useState(0);
-
-  const updateGlass = (newValues) => {
-    const avg = newValues.reduce((a, b) => a + b, 0) / newValues.length;
-    const fillPercentage = Math.min(Math.max(avg, 0), 100);
-    setLiquidHeight(fillPercentage);
-    setAverage(avg);
-  };
-
-  const handleInputChange = (index, value) => {
-    const newValues = [...values];
-    newValues[index] = parseFloat(value) || 0;
-    setValues(newValues);
-    updateGlass(newValues);
-  };
-  
-  
-    const data = [
-      {
-          "name": "Likes",
-          "value": 260
-      },
-      {
-          "name": "Comments",
-          "value": 60
-      },
-      {
-          "name": "Shares",
-          "value": 40
-      }
-  ]
-  
-
   return (
     <div style={styles.container}>
-      <div style={styles.inputs}>
-        {data.map((item ,index) => (
-          <input
-            key={index}
-            type="number"
-            value={item.value}
-            placeholder={item.name}
-            style={styles.input}
-            onChange={(e) => handleInputChange(index, e.target.value)}
-          />
-        ))}
-      </div>
-      
+      <input
+        type="number"
+        value={maxTotal}
+        placeholder="  Enter Average Value"
+        style={styles.input}
+        onChange={handleMaxTotalChange}
+      />
+
       <div style={styles.chaiGlass}>
         <div style={styles.glassBody}>
           <div style={styles.glassBorderLeft}></div>
@@ -199,18 +208,17 @@ export const ChaiGlass = () => {
               <div key={index} style={styles.rib}></div>
             ))}
           </div>
-          <div style={{...styles.liquid, height: `${liquidHeight}%`}}>
-            <div style={{...styles.foam, bottom: `${liquidHeight}%`}}></div>
-            <div style={{...styles.bubble, left: '20%', animationDelay: '0s'}}></div>
-            <div style={{...styles.bubble, left: '50%', animationDelay: '0.5s'}}></div>
-            <div style={{...styles.bubble, left: '80%', animationDelay: '1s'}}></div>
+          <div style={{ ...styles.liquid, height: `${liquidHeight}%` }}>
+            <div style={{ ...styles.foam, bottom: `${liquidHeight}%` }}></div>
+            <div style={{ ...styles.bubble, left: "20%", animationDelay: "0s" }}></div>
+            <div style={{ ...styles.bubble, left: "50%", animationDelay: "0.5s" }}></div>
+            <div style={{ ...styles.bubble, left: "80%", animationDelay: "1s" }}></div>
           </div>
         </div>
         <div style={styles.shadow}></div>
       </div>
-      
+
       <div style={styles.averageDisplay}>Average: {average.toFixed(1)}</div>
     </div>
   );
 };
-

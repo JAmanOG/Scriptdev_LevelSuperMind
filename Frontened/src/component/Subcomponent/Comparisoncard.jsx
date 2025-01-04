@@ -12,7 +12,7 @@ const ComparisonCard = ({ title, metrics }) => (
             <div className="flex items-center gap-2">
               <div className="w-32 h-2 bg-gray-100 rounded-full overflow-hidden">
                 <div 
-                  className="h-full bg-blue-500 rounded-full" 
+                  className="h-full bg-[#2C2C2C] rounded-full" 
                   style={{ width: `${(value/120) * 100}%` }}
                 />
               </div>

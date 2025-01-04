@@ -129,7 +129,7 @@ const Overview = ({ prompt }) => {
                       key={type}
                       dataKey={type}
                       name={`${type.charAt(0).toUpperCase() + type.slice(1)}`}
-                      fill={["#93c5fd", "#3b82f6", "#6d28d9"][index] || "#000"}
+                      fill={["#F7D3B2", "#2C2C2C" , "#6A8A82"][index] || "#000"}
                     />
                   ))}
                 </BarChart>
