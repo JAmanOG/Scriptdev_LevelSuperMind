@@ -33,13 +33,14 @@ const Homepage = ({ prompt }) => {
   
       setIsLoading(true);
       setError(null);
+      const Token = 'AstraCS:PTHYKJbrTJHxWPoISNNOrzoR:c2331dc003818b31bc690eaf74641b0e1c43b5c201a1b4a36d066c239d48975f';
   
       try {
         const response = await fetch('https://hackathonlevelsupermind.azurewebsites.net/proxy', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${import.meta.env.Token||''}`,
+            'Authorization': `Bearer ${Token||''}`,
           },
           body: JSON.stringify({
             input_value: JSON.stringify(prompt),
