@@ -1198,7 +1198,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "token",
-                "value": "",
+                "value": "ASTRA_DB_APPLICATION_TOKEN",
                 "display_name": "Astra DB Application Token",
                 "advanced": false,
                 "input_types": [
@@ -1826,7 +1826,7 @@
             "base_classes": [
               "Message"
             ],
-            "display_name": "Text Output",
+            "display_name": "Database Data",
             "documentation": "",
             "custom_fields": {},
             "output_types": [],
@@ -1872,8 +1872,8 @@
         "id": "TextInput-iR7YN",
         "type": "genericNode",
         "position": {
-          "x": 492.827343603519,
-          "y": -373.2160378486702
+          "x": 636.8246867792029,
+          "y": -371.54165013732506
         },
         "data": {
           "node": {
@@ -1908,7 +1908,7 @@
                 "placeholder": "",
                 "show": true,
                 "name": "input_value",
-                "value": "sk-proj-xoEZ5lWnew2qrc2xzDV1T3BlbkFJjbp1iJK1GRoIFymW8ApA",
+                "value": "",
                 "display_name": "Text",
                 "advanced": false,
                 "input_types": [
@@ -1926,7 +1926,7 @@
             "base_classes": [
               "Message"
             ],
-            "display_name": "Text Input",
+            "display_name": "Enter the GPT API KEY",
             "documentation": "",
             "custom_fields": {},
             "output_types": [],
@@ -1963,8 +1963,8 @@
         "width": 320,
         "height": 231,
         "positionAbsolute": {
-          "x": 492.827343603519,
-          "y": -373.2160378486702
+          "x": 636.8246867792029,
+          "y": -371.54165013732506
         },
         "dragging": false
       }
@@ -1995,8 +1995,7 @@
         },
         "id": "reactflow__edge-Prompt-2A7hf{œdataTypeœ:œPromptœ,œidœ:œPrompt-2A7hfœ,œnameœ:œpromptœ,œoutput_typesœ:[œMessageœ]}-Agent-sTfYJ{œfieldNameœ:œsystem_promptœ,œidœ:œAgent-sTfYJœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "",
-        "selected": false
+        "className": ""
       },
       {
         "source": "ChatInput-pnWRG",
@@ -2023,8 +2022,7 @@
         },
         "id": "reactflow__edge-ChatInput-pnWRG{œdataTypeœ:œChatInputœ,œidœ:œChatInput-pnWRGœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Agent-sTfYJ{œfieldNameœ:œinput_valueœ,œidœ:œAgent-sTfYJœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "",
-        "selected": false
+        "className": ""
       },
       {
         "source": "AstraDBToolComponent-x10j6",
@@ -2053,8 +2051,7 @@
         },
         "id": "reactflow__edge-AstraDBToolComponent-x10j6{œdataTypeœ:œAstraDBToolComponentœ,œidœ:œAstraDBToolComponent-x10j6œ,œnameœ:œapi_build_toolœ,œoutput_typesœ:[œStructuredToolœ]}-Agent-sTfYJ{œfieldNameœ:œtoolsœ,œidœ:œAgent-sTfYJœ,œinputTypesœ:[œToolœ,œBaseToolœ,œStructuredToolœ],œtypeœ:œotherœ}",
         "animated": false,
-        "className": "",
-        "selected": false
+        "className": ""
       },
       {
         "source": "Agent-sTfYJ",
@@ -2110,8 +2107,7 @@
         },
         "id": "reactflow__edge-ChatInput-pnWRG{œdataTypeœ:œChatInputœ,œidœ:œChatInput-pnWRGœ,œnameœ:œmessageœ,œoutput_typesœ:[œMessageœ]}-Prompt-2A7hf{œfieldNameœ:œQuestionsœ,œidœ:œPrompt-2A7hfœ,œinputTypesœ:[œMessageœ,œTextœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "",
-        "selected": false
+        "className": ""
       },
       {
         "source": "AstraDBToolComponent-x10j6",
@@ -2138,8 +2134,7 @@
         },
         "id": "reactflow__edge-AstraDBToolComponent-x10j6{œdataTypeœ:œAstraDBToolComponentœ,œidœ:œAstraDBToolComponent-x10j6œ,œnameœ:œapi_run_modelœ,œoutput_typesœ:[œDataœ]}-ParseData-JawqV{œfieldNameœ:œdataœ,œidœ:œParseData-JawqVœ,œinputTypesœ:[œDataœ],œtypeœ:œotherœ}",
         "animated": false,
-        "className": "",
-        "selected": false
+        "className": ""
       },
       {
         "source": "ParseData-JawqV",
@@ -2166,8 +2161,7 @@
         },
         "id": "reactflow__edge-ParseData-JawqV{œdataTypeœ:œParseDataœ,œidœ:œParseData-JawqVœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-TextOutput-8bxvl{œfieldNameœ:œinput_valueœ,œidœ:œTextOutput-8bxvlœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "animated": false,
-        "className": "",
-        "selected": false
+        "className": ""
       },
       {
         "source": "TextInput-iR7YN",
@@ -2194,18 +2188,17 @@
         },
         "id": "reactflow__edge-TextInput-iR7YN{œdataTypeœ:œTextInputœ,œidœ:œTextInput-iR7YNœ,œnameœ:œtextœ,œoutput_typesœ:[œMessageœ]}-Agent-sTfYJ{œfieldNameœ:œapi_keyœ,œidœ:œAgent-sTfYJœ,œinputTypesœ:[œMessageœ],œtypeœ:œstrœ}",
         "className": "",
-        "animated": false,
-        "selected": false
+        "animated": false
       }
     ],
     "viewport": {
-      "x": 278.1022457775369,
-      "y": 189.08740895873123,
-      "zoom": 0.5283971980028475
+      "x": 232.14448992521147,
+      "y": 112.21260151558226,
+      "zoom": 0.5380304364738318
     }
   },
   "description": "Data Analysis Tool By ScriptDev",
-  "name": "Data Analysis Tool (LevelSuperMind Hackathon)",
+  "name": "Hackathon",
   "last_tested_version": "1.1.1",
   "endpoint_name": null,
   "is_component": false
