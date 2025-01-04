@@ -34,12 +34,6 @@ const Layout = ({children }) => {
               </Link>
             ))}
           </nav>
-          <div className="absolute bottom-6 left-6">
-            <div className="flex items-center gap-3 px-4 py-2 cursor-pointer hover:bg-gray-800/50 rounded-lg">
-              <LogOut size={20} />
-              <span>Logout</span>
-            </div>
-          </div>
         </div>
     
         {/* Main Content */}
