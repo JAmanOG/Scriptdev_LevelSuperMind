@@ -42,7 +42,7 @@ const Overview = ({ prompt }) => {
   }
 
   const message_text = dataState?.outputs?.[0]?.outputs?.[0]?.results?.message?.text || '';
-  console.log(message_text);
+  // console.log(message_text);
 
   function parseEngagementData(message_text) {
     const result = {};
