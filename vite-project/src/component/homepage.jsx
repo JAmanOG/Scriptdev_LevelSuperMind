@@ -14,7 +14,6 @@ const Loading = () => (
   </div>
 );
 const Homepage = ({ prompt }) => {
-  const Token = "AstraCS:PTHYKJbrTJHxWPoISNNOrzoR:c2331dc003818b31bc690eaf74641b0e1c43b5c201a1b4a36d066c239d48975f";
   const [dataState, setDataState] = React.useState(null);
   const [error, setError] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
@@ -40,7 +39,7 @@ const Homepage = ({ prompt }) => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${Token}`,
+            'Authorization': `Bearer ${import.meta.env.Token||''}`,
           },
           body: JSON.stringify({
             input_value: JSON.stringify(prompt),

@@ -646,8 +646,8 @@ const AnalyticsDashboard = () => {
   }
 
   return (
-    <div className="p-8 bg-gray-50 min-h-screen">
-      <div className="max-w-7xl mx-auto">
+    <div className="py-4 bg-gray-50 min-h-screen">
+      <div className="max-w-8xl mx-auto">
         <div className="mb-8">
           <h1 className="text-2xl font-bold">Analytics</h1>
           <p className="text-gray-500 mt-1">Performance comparison between post types</p>

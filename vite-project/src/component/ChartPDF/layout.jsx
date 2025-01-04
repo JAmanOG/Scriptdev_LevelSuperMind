@@ -1,10 +1,9 @@
-import { DownloadButton } from './chartpdf.jsx';
-import ExportPDF from './rechartPng.jsx';
+// import { DownloadButton } from './chartpdf.jsx';
+import CombinedAnalytics from './chartpdf.jsx';
 
 const DownloadButtonPdf = () => (
-  <div className='bg-red-400'>
-    <DownloadButton />
-    <ExportPDF/>
+  <div className=''>
+    <CombinedAnalytics />
   </div>
 );
 
