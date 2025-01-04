@@ -7,12 +7,85 @@ import AnalyticsDashboard from "./anaylatics";
 import Settings from "./Subcomponent/Setting";
 import Reports from "./Subcomponent/reports";
 
-const Loading = () => (
-  <div className="flex justify-center items-center h-screen">
-    <div className="loader"></div>
-    <p className="text-gray-600 ml-4">Loading...</p>
-  </div>
-);
+const Loading = () => {
+  return (
+    <div className="flex min-h-screen w-full items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-50">
+      <div className="relative space-y-6">
+        {/* Flowing Waves */}
+        <div className="flex items-center justify-center">
+          <div className="relative h-16 w-64 overflow-hidden rounded-xl bg-white shadow-lg">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="z-10 text-lg font-medium text-indigo-600">Processing Data</span>
+            </div>
+            {[...Array(3)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute h-16 w-64 animate-[flow_3s_ease-in-out_infinite] bg-gradient-to-r from-indigo-400 via-blue-400 to-indigo-400 opacity-30"
+                style={{
+                  animationDelay: `${i * 0.5}s`,
+                  transform: 'translateX(-50%)',
+                  left: '50%'
+                }}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Flowing Circles */}
+        <div className="flex items-center justify-center space-x-4">
+          <div className="relative h-12 w-12">
+            {[...Array(4)].map((_, i) => (
+              <div
+                key={i}
+                className="absolute inset-0 rounded-full border-2 border-indigo-500 animate-[ripple_2s_ease-out_infinite]"
+                style={{
+                  animationDelay: `${i * 0.5}s`,
+                }}
+              />
+            ))}
+          </div>
+          <span className="text-lg font-medium text-gray-600">Analyzing</span>
+        </div>
+
+        {/* Flowing Particles */}
+        <div className="relative h-16 w-64 overflow-hidden rounded-lg bg-gradient-to-r from-indigo-600 to-blue-600">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="z-10 text-lg font-medium text-white">Computing</span>
+          </div>
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute h-2 w-2 rounded-full bg-white opacity-50 animate-[particle_2s_linear_infinite]"
+              style={{
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 2}s`,
+                animationDuration: `${2 + Math.random() * 2}s`
+              }}
+            />
+          ))}
+        </div>
+
+        <style jsx>{`
+          @keyframes flow {
+            0% { transform: translateX(-50%) translateY(0) scaleX(1.5); }
+            50% { transform: translateX(-50%) translateY(2px) scaleX(1.7); }
+            100% { transform: translateX(-50%) translateY(0) scaleX(1.5); }
+          }
+          @keyframes ripple {
+            0% { transform: scale(0.8); opacity: 1; }
+            100% { transform: scale(2); opacity: 0; }
+          }
+          @keyframes particle {
+            0% { transform: translateY(100%) translateX(0); opacity: 0; }
+            50% { opacity: 1; }
+            100% { transform: translateY(-100%) translateX(20px); opacity: 0; }
+          }
+        `}</style>
+      </div>
+    </div>
+  );
+};
+
 const Homepage = ({ prompt }) => {
   const [dataState, setDataState] = React.useState(null);
   const [error, setError] = React.useState(null);
@@ -61,7 +134,7 @@ const Homepage = ({ prompt }) => {
         });
   
         if (!response.ok) {
-          throw new Error(`Request failed: ${response.status}`);
+          throw new Error(`Request failed: ${response.status && response.detail||'restart the flow'}`);
         }
   
         const result = await response.json();
