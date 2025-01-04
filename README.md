@@ -9,6 +9,10 @@ This project leverages cutting-edge technologies including:
 - **React** for the frontend
 - **Node.js** for the backend
 ### Feel free to visit our website at https://calm-grass-040f99400.4.azurestaticapps.net/
+---
+### LangFlow JSON
+The LangFlow JSON file is provided in the above repository as `LangFlow_JSON(LevelSuperMind Hackathon).json`. Download this file and import it into LangFlow to load the project structure.
+
 ## Features
 1. **Post Type Analysis:**
    - Compare the performance of different post types (e.g., static images vs. carousels).
