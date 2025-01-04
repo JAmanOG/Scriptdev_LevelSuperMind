@@ -383,6 +383,7 @@
     const { insights, conclusion } = parseInsightsAndConclusion(message_text);
   
     const availableTypes = Object.keys(engagementData);
+    console.log(availableTypes)
   
     const comparisonData = ["Likes", "Comments", "Shares"].map((metric) => {
       const dataPoint = { name: metric };
@@ -512,7 +513,7 @@
               <Tooltip />
               <Legend />
               {availableTypes.map((type) => (
-                <Bar key={type} dataKey={type} fill={type === 'StaticImage' ? '#F7D3B2' : type === 'Carousel' ? '#2c2c2c' : '#F7D3B2'} />
+                <Bar key={type} dataKey={type} fill={type === 'staticImage' ? '#F7D3B2' : type === 'reels' ? '#2c2c2c' : '#F7D3B2'} />
               ))}
             </BarChart>
           </ResponsiveContainer>

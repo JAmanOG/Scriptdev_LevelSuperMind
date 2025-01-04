@@ -2,16 +2,6 @@ import React, { useState, useEffect } from "react";
 import { useApi } from "@/hook/APIContext";
 import { Eye, EyeOff, Copy, Check, AlertCircle } from "lucide-react";
 import { Alert, AlertDescription } from "@/components/ui/alert";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
 
 const Settings = () => {
   const { apiKey, setApiKey } = useApi();
@@ -82,13 +72,11 @@ const Settings = () => {
     try {
       setApiKey('');  // Actually clear the API key
       setNewApiKey(''); // Clear the input field
-      setShowRemoveDialog(false); // Close the dialog
       setMessage({
         type: 'success',
         content: 'API key removed successfully!'
       });
     } catch (error) {
-      // Error handling
     } finally {
       setLoading(false);
     }
@@ -189,7 +177,7 @@ const Settings = () => {
                   </button>
                   <button
                     type="button"
-                    onClick={() => setShowRemoveDialog(true)}
+                    onClick={() => handleRemove()}
                     disabled={loading || !apiKey}
                     className="flex-1 bg-red-500 text-white px-6 py-3 rounded-lg hover:bg-red-600 focus:ring-2 focus:ring-red-300 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                   >
@@ -201,28 +189,6 @@ const Settings = () => {
           </div>
         </div>
       </main>
-      
-      <AlertDialog open={showRemoveDialog} onOpenChange={setShowRemoveDialog}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Remove API Key</AlertDialogTitle>
-            <AlertDialogDescription>
-              Are you sure you want to remove your API key? This action cannot be undone.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel onClick={() => setShowRemoveDialog(false)}>Cancel</AlertDialogCancel>
-            <AlertDialogAction 
-              onClick={handleRemove}
-              className="bg-red-500 hover:bg-red-600 text-white"
-              disabled={loading}
-            >
-              {loading ? 'Removing...' : 'Remove'}
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
-
     </div>
   );
 };
