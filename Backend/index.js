@@ -42,4 +42,4 @@ app.post('/proxy', async (req, res) => {
     }
 });
 
-app.listen(4000, () => console.log('Proxy server running on port 4000'));
+app.listen(8080, () => console.log('Proxy server running on port 4000'));

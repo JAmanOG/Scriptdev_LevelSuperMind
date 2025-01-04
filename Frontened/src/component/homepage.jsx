@@ -96,3 +96,5 @@ const Homepage = ({ prompt }) => {
     </div>
   );
 };
+
+export default Homepage;
