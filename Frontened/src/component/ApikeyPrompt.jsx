@@ -28,7 +28,7 @@ const ApikeyPrompt = () => {
     setError("");
 
     setTimeout(() => {
-      if (apiKey.length < 20) {
+      if (apiKey.length < 15) {
         setError(
           "Invalid API key format. Please check your key and try again."
         );
