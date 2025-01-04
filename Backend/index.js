@@ -11,7 +11,11 @@ const limiter = rateLimit({
 });
 
 app.use(limiter);
-app.use(cors());
+app.use(cors({
+    origin: '*', // Allow all origins for testing
+    methods: ["GET", "POST"],
+    credentials: true,
+}));
 app.use(express.json());
 
 app.post('/proxy', async (req, res) => {
