@@ -551,7 +551,7 @@ const colorClasses = {
 };
 
 const parseInsightsAndConclusion = (input) => {
-  const insightsPattern = /### Insights:\n([\s\S]*?)\n\n### Conclusion:/;
+  const insightsPattern = /### Engagement Differences:\n([\s\S]*?)\n\n### Conclusion:/;
   const conclusionPattern = /### Conclusion:\n([\s\S]*)/;
 
   const insightsMatch = input.match(insightsPattern);
@@ -574,6 +574,7 @@ const parseInsightsAndConclusion = (input) => {
     : "";
   return { insights, conclusion };
 };
+
 
 const parseEngagementData = (input) => {
   const patterns = {
