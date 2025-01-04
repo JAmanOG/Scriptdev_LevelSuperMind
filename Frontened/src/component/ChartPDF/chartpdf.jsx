@@ -472,47 +472,6 @@ const CombinedAnalytics = () => {
 
   return (
     <div>
-      {/* Charts for capturing */}
-      {/* <div ref={comparisonChartRef}>
-        <ResponsiveContainer width="100%" height={300}>
-          <BarChart data={comparisonData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" />
-            <YAxis />
-            <Tooltip />
-            <Legend />
-            {availableTypes.map((type, index) => (
-              <Bar key={type} dataKey={type} fill={['#8884d8', '#82ca9d', '#FF8042'][index % 3]} name={type} />
-            ))}
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-      
-      <div ref={donutChartRef}>
-        <ResponsiveContainer width="100%" height={300}>
-          <PieChart>
-            <Pie
-              data={totalEngagement}
-              dataKey="value"
-              nameKey="name"
-              cx="50%"
-              cy="50%"
-              innerRadius={60}
-              outerRadius={80}
-              fill="#82ca9d"
-              label
-            >
-              {totalEngagement.map((entry, index) => (
-                <Cell key={`cell-${index}`} fill={['#FF8042', '#0088FE', '#00C49F'][index % 3]} />
-              ))}
-            </Pie>
-            <Tooltip />
-            <Legend />
-          </PieChart>
-        </ResponsiveContainer>
-      </div> */}
-
-      {/* Capture and Download buttons */}
       <div className="mt-4 space-x-4">
         <button 
           onClick={handleCaptureCharts}
