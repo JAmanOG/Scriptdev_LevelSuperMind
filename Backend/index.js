@@ -12,7 +12,7 @@ const limiter = rateLimit({
 
 app.use(limiter);
 app.use(cors({
-    origin: '*', // Allow all origins for testing
+    origin: 'https://calm-grass-040f99400.4.azurestaticapps.net', // Allow all origins for testing
     methods: ["GET", "POST"],
     credentials: true,
 }));
