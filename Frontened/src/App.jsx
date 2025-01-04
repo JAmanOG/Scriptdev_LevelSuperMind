@@ -4,7 +4,7 @@ import Outputjson from "../Outputjson";
 import { parse } from "postcss";
 import ApikeyPrompt from "./component/ApikeyPrompt";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import HomePage from "./component/HomePage";
+import HomePage from "./component/HomePage.jsx";
 import {ChaiGlass} from "./component/chaiCup.jsx";
 import PromptChat from "./component/Subcomponent/Prompt";
 import { ApiKeyProvider } from "../hook/APIContext";
