@@ -35,7 +35,7 @@ const Homepage = ({ prompt }) => {
       setError(null);
   
       try {
-        const response = await fetch('http://localhost:4000/proxy', {
+        const response = await fetch('https://hackathonlevelsupermind.azurewebsites.net/proxy', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
