@@ -71,7 +71,7 @@ const PromptChat = ({ onSend }) => {
               Enter Your Prompt
             </h1>
             <p className="text-gray-600">
-              Example: "Compare the engagement rates of static images and carousel posts"
+              Example: "Provide me a comparison between static images and carousel posts"
             </p>
           </div>
         </div>

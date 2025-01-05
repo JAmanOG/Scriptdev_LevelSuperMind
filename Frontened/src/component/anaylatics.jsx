@@ -57,6 +57,31 @@ const parseInsightsAndConclusion = (input) => {
   return { insights, conclusion };
 };
 
+const BackupparseInsightsAndConclusion = (input) => {
+  const insightsPattern = /### Insights:\n([\s\S]*?)\n\n### Conclusion:/;
+  const conclusionPattern = /### Conclusion:\n([\s\S]*)/;
+
+  const insightsMatch = input.match(insightsPattern);
+  const conclusionMatch = input.match(conclusionPattern);
+
+  const insights = insightsMatch
+    ? insightsMatch[1]
+        .trim()
+        .replace(/^-\s*/gm, "") // Remove leading dashes and spaces
+        .replace(/\*\*/g, "") // Remove all `**` for bold formatting
+    : "";
+  
+  const conclusion = conclusionMatch
+    ? conclusionMatch[1].replace(/\*\*/g, "").trim() // Remove `**` from conclusion as well
+    : "";
+
+  return { insights, conclusion };
+};
+
+// Assuming `messageText` is already assigned
+
+
+
 
 const parseEngagementData = (input) => {
   const patterns = {
@@ -103,9 +128,21 @@ const AnalyticsDashboard = () => {
   }, []);
 
   const messageText = dataState['outputs'][0]['outputs'][0]['results']['message']['text'];
+  console.log("Message Text:", messageText);
   const result = parseInsightsAndConclusion(messageText);
+
+
   const { comparisonData, engagementData } = parseEngagementData(messageText);
-  // console.log("Result:", result);
+  console.log("Result:", result);
+
+  const bresult = BackupparseInsightsAndConclusion(messageText);
+console.log(bresult);
+
+if (result.insights.length === 0) {
+    result.insights = bresult.insights.split("\n");
+    result.conclusion = bresult.conclusion;
+  }
+
   // console.log("Engagement Data:", engagementData);
   const colors = ['emerald', 'blue', 'purple', 'amber', 'rose'];
   const COLORS = ['#F7D3B2', '#2C2C2C', '#6A8A82'];

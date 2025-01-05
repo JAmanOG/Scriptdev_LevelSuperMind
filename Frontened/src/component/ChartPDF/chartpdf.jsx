@@ -109,6 +109,7 @@
     if (!dataState) return null;
   
     const message_text = dataState?.outputs?.[0]?.outputs?.[0]?.results?.message?.text || '';
+    console.log(message_text)
   
     const parseEngagementData = (message_text) => {
       const result = {};
@@ -133,8 +134,9 @@
     };
   
     const parseInsightsAndConclusion = (input) => {
-      const insightsPattern = /### Engagement Differences:\n([\s\S]*?)\n\n### Conclusion:/;
-      const conclusionPattern = /### Conclusion:\n([\s\S]*)/;
+      const insightsPattern = /### Insights:([\s\S]*?)(### Conclusion:|$)/;
+    
+      const conclusionPattern = /### Conclusion:([\s\S]*)/;
     
       const insightsMatch = input.match(insightsPattern);
       const conclusionMatch = input.match(conclusionPattern);
@@ -142,26 +144,27 @@
       const insights = insightsMatch
         ? insightsMatch[1]
             .trim()
-            .split("\n")
+            .split(",")
             .map(line =>
               line
-                .replace(/^-\s*/, "") // Remove leading `- `
-                .replace(/\*\*/g, "") // Remove `**`
+                .replace(/^\s*:/, "")
+                .replace(/\*\*/g, "")
                 .trim()
             )
+            .filter(line => line.length > 0)
         : [];
     
       const conclusion = conclusionMatch
-        ? conclusionMatch[1].replace(/\*\*/g, "").trim() // Remove `**`
+        ? conclusionMatch[1].replace(/\*\*/g, "").trim() 
         : "";
+    
       return { insights, conclusion };
     };
-  
+    
     const engagementData = parseEngagementData(message_text);
     const { insights, conclusion } = parseInsightsAndConclusion(message_text);
   
     const availableTypes = Object.keys(engagementData);
-    // console.log(availableTypes)
   
     const comparisonData = ["Likes", "Comments", "Shares"].map((metric) => {
       const dataPoint = { name: metric };
@@ -198,6 +201,8 @@
         }
       }
     };
+
+    console.log(insights)
   
     const AnalyticsPDF = ({ chartImages, insights, conclusion, totalEngagement }) => (
       <Document>

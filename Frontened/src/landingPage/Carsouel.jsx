@@ -19,8 +19,8 @@ const Carsouel = () => {
             <div className="flex flex-col lg:flex-row items-center justify-between">
                 <div className="lg:w-1/2 text-center lg:text-left animate__animated animate__fadeInLeft">
                     <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-                        Social Media Analytics 
-                        <span className="text-blue-500">Reimagined</span>
+                        Social Media Analytics {" "}
+                        <span className="text-blue-500">Reimagined</span> 
                     </h1>
                     <p className="text-gray-300 text-lg md:text-xl mb-8">
                         Transform your social media strategy with AI-powered insights. Compare post performance, track engagement metrics, and make data-driven decisions in real-time.
@@ -51,7 +51,7 @@ const Carsouel = () => {
                 <div className="lg:w-1/2 mt-12 lg:mt-0 animate__animated animate__fadeInRight">
                     <div className="relative">
                         <div className="absolute -inset-1 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg blur opacity-30"></div>
-                        <img src="https://calm-grass-040f99400.4.azurestaticapps.net/Script%20Dev-Circle.png" alt="Analytics Dashboard" className="relative rounded-lg shadow-2xl transform hover:scale-105 transition-transform duration-300"/>
+                        <img src="https://calm-grass-040f99400.4.azurestaticapps.net/Script%20Dev-Circle.png" alt="Analytics Dashboard" className="relative rounded-lg shadow-2xl ml-16 transform hover:scale-105 transition-transform duration-300"/>
                     </div>
                 </div>
             </div>
