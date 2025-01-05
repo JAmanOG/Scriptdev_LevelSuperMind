@@ -8,6 +8,7 @@ import HomePage from "./component/homepage.jsx";
 import {ChaiGlass} from "./component/chaiCup.jsx";
 import PromptChat from "./component/Subcomponent/Prompt";
 import { ApiKeyProvider } from "../hook/APIContext";
+import Layout from "./landingPage/layout";
 
 function App() {
   const [currentPrompt, setCurrentPrompt] = useState('');
@@ -21,9 +22,10 @@ function App() {
       <ApiKeyProvider>
       <Router>
         <Routes>
-        <Route exact path="/" element={<ApikeyPrompt />} />
+        <Route exact path="/" element={<Layout/>} />
+        <Route path="/api" element={<ApikeyPrompt />} />
         <Route path="/prompt" element={<PromptChat onSend={handleSendPrompt} />} />
-        <Route path="/HomePage/*" element={<HomePage prompt={currentPrompt} />} /> {/* Add trailing /* */}
+        <Route path="/HomePage/*" element={<HomePage prompt={currentPrompt} />} /> 
         <Route path="/ChaiCup" element={<ChaiGlass />} />
         </Routes>
       </Router>
