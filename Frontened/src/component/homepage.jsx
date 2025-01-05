@@ -1,5 +1,5 @@
 import React from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route,useNavigate } from "react-router-dom";
 import Layout from "./Subcomponent/layout";
 import Overview from "./Subcomponent/overview";
 import { NotFound } from "./Subcomponent/NotFound.jsx";
@@ -91,6 +91,7 @@ const Homepage = ({ prompt }) => {
   const [error, setError] = React.useState(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const apiKey = localStorage.getItem("apiKey");
+  const navigate = useNavigate();
 
   const dataValue = React.useMemo(() => {
     const savedData = localStorage.getItem("dataState");
@@ -134,7 +135,7 @@ const Homepage = ({ prompt }) => {
         });
   
         if (!response.ok) {
-          throw new Error(`Request failed: ${response.status && response.detail||'restart the flow'}`);
+          throw new Error(`Request failed: ${response.status && response.detail|| response.status}`);
         }
   
         const result = await response.json();
@@ -174,7 +175,7 @@ const Homepage = ({ prompt }) => {
       <div className="flex flex-col gap-4 justify-center items-center h-screen">
         <h1 className="text-2xl text-red-500">Error: {error}</h1>
         <button
-          onClick={() => window.location.reload()}
+          onClick={navigate('/prompt')}
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         >
           Retry
