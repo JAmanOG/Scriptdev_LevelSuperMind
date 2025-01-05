@@ -78,9 +78,33 @@ const BackupparseInsightsAndConclusion = (input) => {
   return { insights, conclusion };
 };
 
-// Assuming `messageText` is already assigned
+const Backupfinal = (input) => {
+  const insightsPattern = /### Insights:([\s\S]*?)(### Conclusion:|$)/;
 
+  const conclusionPattern = /### Conclusion:([\s\S]*)/;
 
+  const insightsMatch = input.match(insightsPattern);
+  const conclusionMatch = input.match(conclusionPattern);
+
+  const insights = insightsMatch
+    ? insightsMatch[1]
+        .trim()
+        .split(",")
+        .map(line =>
+          line
+            .replace(/^\s*:/, "")
+            .replace(/\*\*/g, "")
+            .trim()
+        )
+        .filter(line => line.length > 0)
+    : [];
+
+  const conclusion = conclusionMatch
+    ? conclusionMatch[1].replace(/\*\*/g, "").trim() 
+    : "";
+
+  return { insights, conclusion };
+};
 
 
 const parseEngagementData = (input) => {
@@ -138,9 +162,17 @@ const AnalyticsDashboard = () => {
   const bresult = BackupparseInsightsAndConclusion(messageText);
 console.log(bresult);
 
-if (result.insights.length === 0) {
+  const bfinal = Backupfinal(messageText);
+  console.log(bfinal);
+  if (result.insights.length === 0|| result.insights.length < 3) { 
     result.insights = bresult.insights.split("\n");
     result.conclusion = bresult.conclusion;
+  }
+  
+  
+  if (result.insights.length < 3) { 
+    result.insights = bfinal.insights.split("\n");
+    result.conclusion = bfinal.conclusion;
   }
 
   // console.log("Engagement Data:", engagementData);
