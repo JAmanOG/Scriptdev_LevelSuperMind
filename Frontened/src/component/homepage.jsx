@@ -174,11 +174,19 @@ const Homepage = ({ prompt }) => {
     return (
       <div className="flex flex-col gap-4 justify-center items-center h-screen">
         <h1 className="text-2xl text-red-500">Error: {error}</h1>
+        <h2>Check your GPT API key and try again.</h2>
+        <button
+          onClick={()=>navigate('/api')}
+          className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600"
+        > 
+          Go to API Page
+        </button>
+        
         <button
           onClick={()=>navigate('/prompt')}
           className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
         >
-          Retry
+          To Prompt Page
         </button>
       </div>
     );
